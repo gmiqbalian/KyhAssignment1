@@ -43,13 +43,13 @@ namespace KyhAssignment1
                     Console.WriteLine("Vill du spela igen (Ja/Nej)?");
                     string answer = Console.ReadLine();
                     answer = answer.ToLower();
-                    if (answer.Contains("nej") || answer.Contains('n'))
+                    if (answer.Contains("nej") || answer.Contains('n')) //add nope
                     {
                         break;
                     }
                 }
 
-                if (rightInput)
+                if (rightInput) //add control over e.g. 25.5 etc.
                 {
                     count++;
                 }
