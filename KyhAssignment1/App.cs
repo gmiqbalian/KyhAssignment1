@@ -29,12 +29,10 @@ namespace KyhAssignment1
             
                 if (num > guess && rightInput)
                 {
-                    Console.WriteLine(num); //delete before submitting.
                     Console.WriteLine("Talet är större.");
                 }
                 else if(num < guess && rightInput)
-                {
-                    Console.WriteLine(num); //delete before submitting.
+                {                 
                     Console.WriteLine("Talet är mindre.");
                 }
                 else if(guess == num && rightInput)
@@ -43,13 +41,13 @@ namespace KyhAssignment1
                     Console.WriteLine("Vill du spela igen (Ja/Nej)?");
                     string answer = Console.ReadLine();
                     answer = answer.ToLower();
-                    if (answer.Contains("nej") || answer.Contains('n')) //add nope
+                    if (answer.Contains("nej") || answer.Contains('n') || answer.Contains("nope"))
                     {
                         break;
                     }
                 }
 
-                if (rightInput) //add control over e.g. 25.5 etc.
+                if (rightInput)
                 {
                     count++;
                 }
