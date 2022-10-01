@@ -8,43 +8,55 @@ using System.Threading.Tasks;
 
 namespace KyhAssignment1
 {
-    internal class App
+    public class App
     {
         public void Run()
         {
 
             int count = 1;
+            
             Console.WriteLine("Gissa ett tal mellan 1 och 100.");
 
             while (true)
             {
-                Random rnd = new Random(); //change 1 to null before submitting.
-                int num = rnd.Next(1, 101);
-                
-                
+
+                var randomNum = GenerateRandom();
+
                 Console.Write($"Gissning {count}: ");
                 string input = Console.ReadLine();
-                int guess;
-                bool rightInput = int.TryParse(input, out guess);               
-            
-                if (num > guess && rightInput)
+                int userGuess;
+                bool rightInput = int.TryParse(input, out userGuess);
+
+                if (randomNum > userGuess && rightInput)
                 {
                     Console.WriteLine("Talet är större.");
                 }
-                else if(num < guess && rightInput)
-                {                 
+                else if (randomNum < userGuess && rightInput)
+                {
                     Console.WriteLine("Talet är mindre.");
                 }
-                else if(guess == num && rightInput)
+                else if (userGuess == randomNum && rightInput)
                 {
                     Console.WriteLine($"Rätt! Du gissade rätt på {count} försök.");
-                    Console.WriteLine("Vill du spela igen (Ja/Nej)?");
-                    string answer = Console.ReadLine();
-                    answer = answer.ToLower();
-                    if (answer.Contains("nej") || answer.Contains('n') || answer.Contains("nope"))
+                    while (true)
                     {
-                        break;
-                    }
+                        Console.WriteLine("Vill du spela igen (Ja/Nej)?");
+                        string answer = Console.ReadLine();
+                        answer = answer.ToLower();
+
+                        if (answer == "nej" || answer == "n" || answer == "nope")
+                        {
+                            Console.WriteLine("Tack för den här gången!");
+                            return;
+                        }
+                        else if (answer == "ja" || answer == "yes")
+                        {
+                            count = 1;
+                            break;
+                        }
+                    }                    
+                    continue;
+
                 }
 
                 if (rightInput)
@@ -55,8 +67,16 @@ namespace KyhAssignment1
                 {
                     Console.WriteLine("Du kan bara skriva ett tal med siffror. Försök igen!");
                 }
-            }
-            Console.WriteLine("Tack för den här gången!");
+
+            }            
+            
         }
+        public int GenerateRandom()
+        {
+            Random rnd = new Random();
+            int num = rnd.Next(1, 101);
+            return num;
+        }     
+
     }
 }
