@@ -72,7 +72,7 @@ namespace KyhAssignment1
         }
         public int GenerateRandom()
         {
-            Random rnd = new Random(1);
+            Random rnd = new Random();
             int num = rnd.Next(1, 101);
             return num;
         }
