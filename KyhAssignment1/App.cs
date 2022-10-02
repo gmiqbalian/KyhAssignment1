@@ -12,14 +12,16 @@ namespace KyhAssignment1
     {
         public void Run()
         {
-
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
+            var play = true;
             int count = 1;
             
             Console.WriteLine("Gissa ett tal mellan 1 och 100.");
 
-            while (true)
+            while (play)
             {
-
                 var randomNum = GenerateRandom();
 
                 Console.Write($"Gissning {count}: ");
@@ -47,16 +49,15 @@ namespace KyhAssignment1
                         if (answer == "nej" || answer == "n" || answer == "nope")
                         {
                             Console.WriteLine("Tack för den här gången!");
-                            return;
+                            play = false;
+                            break;
                         }
                         else if (answer == "ja" || answer == "yes")
                         {
-                            count = 1;
+                            count = 0;
                             break;
                         }
-                    }                    
-                    continue;
-
+                    }
                 }
 
                 if (rightInput)
@@ -67,16 +68,13 @@ namespace KyhAssignment1
                 {
                     Console.WriteLine("Du kan bara skriva ett tal med siffror. Försök igen!");
                 }
-
             }            
-            
         }
         public int GenerateRandom()
         {
-            Random rnd = new Random();
+            Random rnd = new Random(1);
             int num = rnd.Next(1, 101);
             return num;
-        }     
-
+        }
     }
 }
